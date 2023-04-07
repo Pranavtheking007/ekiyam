@@ -6,15 +6,31 @@ import os
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
-
+import Crop_model as CM
+import Waste_Cost as WC
 import numpy as np
 #app function initialised
 app = Flask(__name__)
 
 model_seg = load_model('Waste_Segregation.h5')
+model_bottle = load_model('wasteV2.h5')
 
 def Waste_Pred(Waste):
   test_image = load_img(Waste, target_size = (256, 256)) # load image 
+  print("@@ Got Image for prediction")
+  
+  test_image = img_to_array(test_image)/255 # convert image to np array and normalize
+  test_image = np.expand_dims(test_image, axis = 0) 
+  
+  result = model_seg.predict(test_image) 
+  print('@@ Raw result = ', result)
+  
+  pred = np.argmax(result, axis=1)
+
+  return pred
+
+def Waste_Bottle(Bottle):
+  test_image = load_img(Bottle, target_size = (256, 256)) # load image 
   print("@@ Got Image for prediction")
   
   test_image = img_to_array(test_image)/255 # convert image to np array and normalize
@@ -51,7 +67,54 @@ def agriwasteform():
         ph = request.form['ph']
         rainfall = request.form['rainfall']
 
-        print(nitrogen,phosphorous,potassium,temperature,humidity,ph,rainfall)
+        X = str(CM.predict(nitrogen,phosphorous,potassium,temperature,humidity,ph,rainfall))
+
+        if (X=='[0]'):
+            return render_template('agriwasteresult.html',data_pred='Rice')
+        elif (X=='[1]'):
+            return render_template('agriwasteresult.html',data_pred='Maize ')
+        elif (X=='[2]'):
+            return render_template('agriwasteresult.html',data_pred='Jute')
+        elif (X=='[3]'):
+            return render_template('agriwasteresult.html',data_pred='Cotton')
+        elif (X=='[4]'):
+            return render_template('agriwasteresult.html',data_pred='Coconut')
+        elif (X=='[5]'):
+            return render_template('agriwasteresult.html',data_pred='Papaya')
+        elif (X=='[6]'):
+            return render_template('agriwasteresult.html',data_pred='Orange')
+        elif (X=='[7]'):
+            return render_template('agriwasteresult.html',data_pred='Apple')
+        elif (X=='[8]'):
+            return render_template('agriwasteresult.html',data_pred='Muskmelon')
+        elif (X=='[9]'):
+            return render_template('agriwasteresult.html',data_pred='Watermelon')
+        elif (X=='[10]'):
+            return render_template('agriwasteresult.html',data_pred='Grapes')
+        elif (X=='[11]'):
+            return render_template('agriwasteresult.html',data_pred='Mango')
+        elif (X=='[12]'):
+            return render_template('agriwasteresult.html',data_pred='Banana')
+        elif (X=='[13]'):
+            return render_template('agriwasteresult.html',data_pred='Pomegranate')
+        elif (X=='[14]'):
+            return render_template('agriwasteresult.html',data_pred='Lentil')
+        elif (X=='[15]'):
+            return render_template('agriwasteresult.html',data_pred='Blackgram')
+        elif (X=='[16]'):
+            return render_template('agriwasteresult.html',data_pred='Mungbean')
+        elif (X=='[17]'):
+            return render_template('agriwasteresult.html',data_pred='Mothbeans')
+        elif (X=='[18]'):
+            return render_template('agriwasteresult.html',data_pred='Pigeonpeas')
+        elif (X=='[19]'):
+            return render_template('agriwasteresult.html',data_pred='Kidneybeans')
+        elif (X=='[20]'):
+            return render_template('agriwasteresult.html',data_pred='Chickpeas')
+        elif (X=='[21]'):
+            return render_template('agriwasteresult.html',data_pred='Coffee')
+        
+
         
         
 #waste management about
@@ -79,11 +142,13 @@ def wastemanageform():
         metal = request.form['metal']
         plastic = request.form['plastic']
         raee = request.form['raee']
-        textile = request.form['texile']
+        texile = request.form['texile']
         other = request.form['other']
         sor = request.form['sor']
 
-        print(tc,region,area,alt,pden,wden,urb,fee,paper,glass,wood,metal,plastic,raee,textile,other,sor)
+        X=str(WC.prediction(tc,region,area,alt,pden,wden,urb,fee,paper,glass,wood,metal,plastic,raee,texile,other,sor))
+        return render_template('wastemanagementresult.html',res=X)
+
 
 
 
@@ -111,8 +176,11 @@ def wastesegform():
         file.save(file_path)
         print(file_path)
         X = str(Waste_Pred(Waste=file_path))
-
-        return X
+        
+        if(X=='[0]'):
+            return render_template("organic_wastesegregationresult.html.html")
+        if(X=='[1]'):
+            return render_template("recycleable_wastesegregationresult.html")
      
 
 
@@ -124,12 +192,29 @@ def bottle():
 #bottle segregation form
 @app.route("/bottlesegregation.html")
 def  bottleform():
-    return render_template("/bottlesegregation.html")
-
-
-
-
-
+    if request.method =="GET":
+        return render_template("/bottlesegregation.html")
+@app.route("/bottlesegregationabout.html")
+def  bottleformabout():
+    if request.method =="POST":
+            file = request.files['file'] # fet input
+            filename = file.filename      
+            print("@@ Input posted = ", filename)
+            
+            file_path = os.path.join('static/upload', filename)
+            file.save(file_path)
+            print(file_path)
+            X = str(Waste_Pred(Waste=file_path))
+            
+            # if(X=='[0]'):
+            #     return render_template("organic_wastesegregationresult.html.html")
+            # if(X=='[1]'):
+            #     return render_template("recycleable_wastesegregationresult.html")
+        
+# @app.route("/potatoes.html",methods = ["GET","POST"])
+# def potatoes():
+    
+#     return render_template("potatoes.html")
 
 
 if __name__ == "__main__":

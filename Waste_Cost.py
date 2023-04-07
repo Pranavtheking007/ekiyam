@@ -80,29 +80,30 @@ ct.fit(X_train)
 
 model = tf.keras.models.load_model("Waste_Fee.h5")
 
-def prediction(region,tc,area,alt,pden,wden,urb,fee,paper,glass,wood,metal,plastic,raee,textile,other,sor):
+def prediction(tc,region,area,alt,pden,wden,urb,fee,paper,glass,wood,metal,plastic,raee,texile,other,sor):
    preds = {
-      'region':region,
-      'tc':tc,
-      'area':area,
-      'alt':alt,
-      'pden':pden,
-      'wden':wden,
-      'urb':urb,
-      'fee':fee,
-      'paper':paper,
-      'glass':glass,
-      'wood':wood,
-      'metal':metal,
-      'plastic':plastic,
-      'raee':raee,
-      'textile':textile,
-      'other':other,
-      'sor':sor
+      'region':[region],
+      'tc':[tc],
+      'area':[area],
+      'alt':[alt],
+      'pden':[pden],
+      'wden':[wden],
+      'urb':[urb],
+      'fee':[fee],
+      'paper':[paper],
+      'glass':[glass],
+      'wood':[wood],
+      'metal':[metal],
+      'plastic':[plastic],
+      'raee':[raee],
+      'texile':[texile],
+      'other':[other],
+      'sor':[sor]
    }
    df = pd.DataFrame(preds)
    df_ct = ct.transform(df)
 
    res = model.predict(df_ct)
-
-   return res
+   res_1 = res[0,0]
+   
+   return res_1
