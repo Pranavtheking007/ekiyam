@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--========== BOX ICONS ==========-->
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+        <!--========== CSS ==========-->
+        <link rel="stylesheet" href="../static/styles.css">
+
+        <!-- <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon"> -->
+
+        <title>Ekyam</title>
+    </head>
+    <body>
+        <!--========== SCROLL TOP ==========-->
+        <a href="#" class="scrolltop" id="scroll-top">
+            <i class='bx bx-up-arrow-alt scrolltop__icon'></i>
+        </a>
+        
+        <!--========== HEADER ==========-->
+        <header class="l-header" id="header">
+            <nav class="nav bd-container">
+                <a href="#" class="nav__logo">Ekyam</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="#features" class="nav__link">Features</a></li>
+
+                        <li><i class='bx bx-toggle-left change-theme' id="theme-button"></i></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--========== HOME ==========-->
+            <section class="home" id="home">
+                <div class="home__container bd-container bd-grid">
+                    <div class="home__img">
+                        <img src="../static/ekyam.png" alt="">
+
+                        <div class="home__shadow"></div>
+                    </div>
+
+                    <div class="home__data">
+                        <h1 class="home__title">एकyam</h1>
+                        <h2>We Believe In</br>Scientific Data</h2>
+                        <!-- <p class="home__description">Breaking barriers between technology and lifestyle.</p> -->
+                        <a href="#features" class="button" style="margin-top: 2rem;">Check Analysis</a>
+                    </div>   
+                </div>
+            </section>
+
+            <!--==========  About ==========-->
+            <section class="about section bd-container" id="about">
+                <div class="about__container bd-grid">
+                    <div class="about__data">
+                        <h2 class="section-title-center">Why Ekyam?</h2>
+                        <p class="about__description">Ekyam uses cutting-edge machine learning algorithms to revolutionize waste management by facilitating waste segregation and enabling individuals to earn money by selling their waste and agricultural waste. Our platform offers a simple, user-friendly interface that makes it easy to manage and track waste, all while contributing to a cleaner, more sustainable environment.</p>
+                        <!-- <a href="#" class="button1">Our Story</a> -->
+                    </div>
+
+                    <div class="about__img">
+                        <img src="../static/about.png" alt="">
+                    </div>
+                </div>
+            </section>
+
+             <!--========== Waitlist ==========-->
+             <!-- <br>
+             <section class="waitlist section" id="card">
+                <div class="waitlist__container bd-container bd-grid">
+                    <div class="waitlist__content">
+                        <h2 class="section-title-center waitlist__title">Nidan Card</h2>
+                        <p class="waitlist__description" style="font-size: 1.1rem;">A digital and physical (We call it Phygital) card that contains the medical history of its user<br><br>
+                            <a href="nidancard/card.html" class="checkout">Know More</a></p>
+                         
+                    </div>
+
+                    <div class="waitlist__img">
+                        <img src="assets/img/waitlistcard.png" alt="">
+                    </div>
+                </div>
+            </section> -->
+
+            <!--========== Features ==========-->
+            <section class="waste section bd-container" id="features">
+                <!-- <h2 class="section-title">Diagnose wastes</h2><br> -->
+                <div class="waste__container bd-grid">
+                    <div class="waste__data">
+                        <img src="../static/agriwaste.png" alt="" class="waste__img">
+                        <h3 class="waste__title">Agri Waste</h3>
+                        <a href="agriwasteabout.html" class="button button-link">Manage</a>
+                    </div>
+
+                    <div class="waste__data">
+                        <img src="../static/wastemanagement.png" alt="" class="waste__img">
+                        <h3 class="waste__title">Waste Management</h3>
+                        <a href="wastemanagementabout.html" class="button button-link">Manage</a>
+                    </div>
+                    
+                    <div class="waste__data">
+                        <img src="../static/wastesegregation.png" alt="" class="waste__img">
+                        <h3 class="waste__title">Waste Segragation</h3>
+                        <a href="wastesegregationabout.html" class="button button-link">Segregate</a>
+                    </div>
+
+                    <div class="waste__data">
+                        <img src="../static/bottlesegregation.png" alt="" class="waste__img">
+                        <h3 class="waste__title">Bottle Segregation</h3>
+                        <a href="bottlesegregationabout.html" class="button button-link">Segregate</a>
+                    </div>
+
+                </div>
+            </section>
+
+           
+        </main>
+
+        <!--========== FOOTER ==========-->
+        <footer class="footer section">
+            <div class="footer__container bd-container bd-grid">
+                <div class="footer__content">
+                    <h3 class="footer__title">
+                        <a href="#" class="footer__logo">Our Motto</a>
+                    </h3>
+                    <p class="footer__description">Breaking barriers<br>between technology<br>and lifestyle.</p>
+                </div>
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Nidan For</h3>
+                    <ul>
+                        <li><a href="" class="footer__link">Agri Waste</a></li>
+                        <li><a href="" class="footer__link">Waste Management</a></li>
+                        <li><a href="" class="footer__link">Waste Segregatiion</a></li>
+                        <li><a href="" class="footer__link">Bottle Segregation</a></li>
+               
+                    </ul>
+                </div>
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Ekyam</h3>
+                    <ul>
+                        <li><a href="#about" class="footer__link">About</a></li>
+                        <li><a href="#features" class="footer__link">Features</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Contribute</h3>
+                    <a href="#" class="footer__social"><i class='bx bxl-github'></i></a>
+                    
+                </div>
+            </div>
+
+            <p class="footer__copy">&#169; 2023 Ekyam. All right reserved</p>
+        </footer>
+
+        <!--========== SCROLL REVEAL ==========-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--========== MAIN JS ==========-->
+        <script src="../static/main.js"></script>
+    </body>
+</html>
