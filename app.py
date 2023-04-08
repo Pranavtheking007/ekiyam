@@ -13,7 +13,8 @@ import numpy as np
 app = Flask(__name__)
 
 model_seg = load_model('Waste_Segregation.h5')
-model_bottle = load_model('wasteV2.h5')
+# model_bottle = load_model('wasteV2.h5')
+model_check = load_model('wasteV3.h5')
 
 def Waste_Pred(Waste):
   test_image = load_img(Waste, target_size = (256, 256)) # load image 
@@ -43,10 +44,29 @@ def Waste_Bottle(Bottle):
 
   return pred
 
+def Check_Pred(Check):
+  test_image = load_img(Check, target_size = (256, 256)) # load image 
+  print("@@ Got Image for prediction")
+  
+  test_image = img_to_array(test_image)/255 # convert image to np array and normalize
+  test_image = np.expand_dims(test_image, axis = 0) 
+  
+  result = model_check.predict(test_image) 
+  print('@@ Raw result = ', result)
+  
+  pred = np.argmax(result, axis=1)
+
+  return pred
+
 # index page
 @app.route("/")
 def index():
     return render_template('index.html')
+
+# Case Study page
+@app.route("/singapore.html")
+def casestudy():
+    return render_template("/singapore.html")
 
 # agri page
 @app.route("/agriwasteabout.html")
@@ -150,6 +170,33 @@ def wastemanageform():
         return render_template('wastemanagementresult.html',res=X)
 
 
+#Waste Check waste form
+@app.route("/checkform.html",methods = ['GET','POST'])
+def checkform():
+    if request.method == 'GET':
+        return render_template("/checkform.html")
+    if request.method == 'POST':
+        file = request.files['file'] # fet input
+        filename = file.filename      
+        print("@@ Input posted = ", filename)
+        
+        file_path = os.path.join('static/upload', filename)
+        file.save(file_path)
+        print(file_path)
+        X = str(Check_Pred(Check=file_path))
+        if (X=='[0]'):
+            return render_template('checkresult.html',data_pred='Cardboard')
+        if (X=='[1]'):
+            return render_template('checkresult.html',data_pred='Glass')
+        if (X=='[2]'):
+            return render_template('checkresult.html',data_pred='Metal')
+        if (X=='[3]'):
+            return render_template('checkresult.html',data_pred='Paper')
+        if (X=='[4]'):
+            return render_template('checkresult.html',data_pred='Plastic')
+        if (X=='[5]'):
+            return render_template('checkresult.html',data_pred='Others')
+
 
 
 #waste segregation about
@@ -178,7 +225,7 @@ def wastesegform():
         X = str(Waste_Pred(Waste=file_path))
         
         if(X=='[0]'):
-            return render_template("organic_wastesegregationresult.html.html")
+            return render_template("organic_wastesegregationresult.html")
         if(X=='[1]'):
             return render_template("recycleable_wastesegregationresult.html")
      
@@ -194,17 +241,17 @@ def bottle():
 def  bottleform():
     if request.method =="GET":
         return render_template("/bottlesegregation.html")
-@app.route("/bottlesegregationabout.html")
-def  bottleformabout():
-    if request.method =="POST":
-            file = request.files['file'] # fet input
-            filename = file.filename      
-            print("@@ Input posted = ", filename)
+# @app.route("/bottlesegregationabout.html")
+# def  bottleformabout():
+#     if request.method =="POST":
+#             file = request.files['file'] # fet input
+#             filename = file.filename      
+#             print("@@ Input posted = ", filename)
             
-            file_path = os.path.join('static/upload', filename)
-            file.save(file_path)
-            print(file_path)
-            X = str(Waste_Pred(Waste=file_path))
+#             file_path = os.path.join('static/upload', filename)
+#             file.save(file_path)
+#             print(file_path)
+#             X = str(Waste_Pred(Waste=file_path))
             
             # if(X=='[0]'):
             #     return render_template("organic_wastesegregationresult.html.html")
