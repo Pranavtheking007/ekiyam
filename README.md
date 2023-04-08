@@ -31,13 +31,18 @@ REPLACE THIS SENTENCE with a short description, 2-3 sentences in length, of the 
 
 ### How our technology solution can help
 
-REPLACE THIS SENTENCE with a short description of your team's solution, in about 10 words.
+Waste Management through ML/DL and Data Science
 
 ### Our idea
 
-INSTRUCTIONS: Replace this paragraph with a longer description of your solution. In about 500 words, describe your solution in more detail. Include the real-world problem you identified, describe the technological solution you have created, and explain how it’s an improvement over existing solutions. You can supply additional documentation in this source code repository that you link to as well.
+INSTRUCTIONS: Our main aim in this project is to segregate waste through machine learning and deep learning models.
+More ever we also guide the users in the possible ways to recycle their waste efficiently and ways to earn through it.
+We have trained model with 92% to 94% accuracy which makes it more reliable.
+In this project we have made feature where the user can upload the image of the waste to classify it into organic waste and recyclable waste.
+We have also made a data analysis of Singapore municipal Coorporation which is one of the best waste management systems in the world to educate and give an idea to users how they can take steps to make their city clean and green.
+We have made a feature where users can fill the data and know the amount they can generate money through the waste.
 
-More detail is available in our [description document](./docs/DESCRIPTION.md).
+
 
 ## Technology implementation
 
