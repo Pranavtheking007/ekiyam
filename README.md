@@ -35,7 +35,7 @@ Waste Management through ML/DL and Data Science
 
 ### Our idea
 
-INSTRUCTIONS: Our main aim in this project is to segregate waste through machine learning and deep learning models.
+Waste management is a global issue which ineeds to be solved at grassroot level. Our main aim in this project is to segregate waste through machine learning and deep learning models.
 More ever we also guide the users in the possible ways to recycle their waste efficiently and ways to earn through it.
 We have trained model with 92% to 94% accuracy which makes it more reliable.
 In this project we have made feature where the user can upload the image of the waste to classify it into organic waste and recyclable waste.
@@ -52,10 +52,9 @@ Diagram and step-by-step description of the flow of our solution:
 
 ![Roadmap](./images/ekyamarchitecture.png)
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+1. The user navigates to the site and upload images for waste segregation.
+2. The user fills the form to see how they can earn through proper waste management.
+3. At the end of every result the user gets management tips to earn money and dispose waste effectively.
 
 ## Presentation materials
 
@@ -88,13 +87,13 @@ See below for our proposed schedule on next steps after Call for Code 2023 submi
 
 ### How to run the project
 
-INSTRUCTIONS: In this section you add the instructions to run your project on your local machine for development and testing purposes. You can also add instructions on how to deploy the project in production.
+INSTRUCTIONS: clone the git repositiry in your local system then from terminal run the cmd python app.py .
 
 ### Live demo
 
 You can find a running system to test at...
 
-See our [description document](./docs/DESCRIPTION.md) for log in credentials.
+
 
 ---
 
