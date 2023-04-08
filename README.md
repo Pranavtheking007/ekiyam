@@ -89,10 +89,6 @@ See below for our proposed schedule on next steps after Call for Code 2023 submi
 
 INSTRUCTIONS: clone the git repositiry in your local system then from terminal run the cmd python app.py .
 
-### Live demo
-
-You can find a running system to test at...
-
 
 
 ---
